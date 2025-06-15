@@ -142,6 +142,21 @@
       0% { opacity: 0; transform: scale(0.8); }
       100% { opacity: 1; transform: scale(1.05); }
     }
+    @media (max-width: 600px) {
+  .top-images {
+    max-width: 100%;      /* Use full width on small screens */
+    gap: 1rem;           
+  }
+  .top-images img {
+    width: 48%;          
+    transform: scale(1);  /* Remove scale down effect for better size */
+  }
+  .gallery img.featured {
+    max-width: 100%;      /* Make featured image full width on mobile */
+    transform: scale(1);  /* Remove scale effect here too */
+  }
+}
+
   </style>
 </head>
 <body>
