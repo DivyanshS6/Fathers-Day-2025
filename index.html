@@ -67,11 +67,34 @@
       transform: scale(1.02);
     }
     .gallery img.featured {
+      grid-column: 1 / -1;
+      max-width: 80%;
+      place-self: center; /* centers both horizontally and vertically (PLEASE WORK VERTICALLYYYYYYY) */
+      transform: scale(1.05);
+      animation: popIn 1s ease-out;
+    }
+
+    /* Make top-images span full grid width so flex centering works */
+    .top-images {
   grid-column: 1 / -1;
-  max-width: 80%;
-  place-self: center; /* 💡 This centers both horizontally and vertically in the grid */
-  transform: scale(1.05);
-  animation: popIn 1s ease-out;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;  /* space between the two images (guess and check) */
+  margin-bottom: 2rem;
+  max-width: 80%; /* match featured max-width (PLEASEEEEEEE WORKKKKRKRKRKRKRKRKRKRKRKRKRR)*/
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-images img {
+  width: calc((100% - 1.5rem) / 2); /* half width minus gap in theory */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease;
+  transform: scale(0.95);
+}
+.top-images img:hover {
+  transform: scale(1.02);
 }
 
 
@@ -98,14 +121,14 @@
       background-color: rgba(0,0,0,0.4);
     }
     .gallery-note {
-  text-align: center;
-  font-size: 1rem;
-  color: #ddd;
-  margin-top: -2rem;
-  margin-bottom: 3rem;
-  font-style: italic;
-  opacity: 0.8;
-}
+      text-align: center;
+      font-size: 1rem;
+      color: #ddd;
+      margin-top: -2rem;
+      margin-bottom: 3rem;
+      font-style: italic;
+      opacity: 0.8;
+    }
 
     @keyframes fadeIn {
       0% { opacity: 0; }
@@ -116,10 +139,9 @@
       100% { transform: translateY(0); opacity: 1; }
     }
     @keyframes popIn {
-  0% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1.05); }
-}
-    
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
   </style>
 </head>
 <body>
@@ -133,15 +155,18 @@
     <p>Thank you for your strength, your wisdom (articles!), and your endless support. Today is for you. You mean the world to me.</p>
   </div>
 
- <div class="gallery">
-  <img src="PXL_20230622_021217211.MP.jpg" alt="Father's Day Photo 1">
-  <img src="PXL_20230423_032624531.MP.jpg" alt="Father's Day Photo 2">
-  <img src="PXL_20230619_015924200.jpg" alt="Father's Day Photo 3" class="featured">
-</div>
+  <div class="gallery">
 
-<p class="gallery-note">We really should take more pictures together.</p>
+    <div class="top-images">
+      <img src="PXL_20230423_032624531.MP.jpg" alt="Father's Day Photo 1">
+      <img src="PXL_20230622_021217211.MP.jpg" alt="Father's Day Photo 2">
+    </div>
 
+    <img src="PXL_20230619_015924200.jpg" alt="Father's Day Photo 3" class="featured">
 
+  </div>
+
+  <p class="gallery-note">We really should take more pictures together.</p>
 
   <div class="message" id="message">
     <p>
@@ -156,7 +181,7 @@
   </footer>
 
   <script>
-    // Show heartfelt message on scroll
+    // Shows message on scroll hopefully
     const message = document.getElementById('message');
     const reveal = () => {
       const triggerBottom = window.innerHeight * 0.8;
