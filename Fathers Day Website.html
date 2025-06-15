@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Father's Day!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: slideUp 1.2s ease forwards;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: #ddd;
+      max-width: 600px;
+      animation: fadeIn 2s ease-in-out 1s forwards;
+    }
+    .gallery {
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transform: scale(0.95);
+      transition: transform 0.4s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.02);
+    }
+    .gallery img.featured {
+  grid-column: 1 / -1;
+  max-width: 80%;
+  place-self: center; /* 💡 This centers both horizontally and vertically in the grid */
+  transform: scale(1.05);
+  animation: popIn 1s ease-out;
+}
+
+
+    .message {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+    .message.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .gallery-note {
+  text-align: center;
+  font-size: 1rem;
+  color: #ddd;
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+    
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>Happy Father's Day 💙</h1>
+  </nav>
+
+  <div class="hero">
+    <h1>To the Best Dad Ever</h1>
+    <p>Thank you for your strength, your wisdom (articles!), and your endless support. Today is for you. You mean the world to me.</p>
+  </div>
+
+ <div class="gallery">
+  <img src="PXL_20230622_021217211.MP.jpg" alt="Father's Day Photo 1">
+  <img src="PXL_20230423_032624531.MP.jpg" alt="Father's Day Photo 2">
+  <img src="PXL_20230619_015924200.jpg" alt="Father's Day Photo 3" class="featured">
+</div>
+
+<p class="gallery-note">We really should take more pictures together.</p>
+
+
+
+  <div class="message" id="message">
+    <p>
+     Hey dad, Thank you for always being on the look out for my well being. Without your guidance, I don't know where I'd be right now, you taught me resiliance, discipline, and to take care of myself, things I'll carry for life, I can never thank you enough for that.. 
+      <br><br>
+      Happy Father’s Day! ❤️
+    </p>
+  </div>
+
+  <footer>
+    Made with love | Father's Day 2025
+  </footer>
+
+  <script>
+    // Show heartfelt message on scroll
+    const message = document.getElementById('message');
+    const reveal = () => {
+      const triggerBottom = window.innerHeight * 0.8;
+      const top = message.getBoundingClientRect().top;
+      if (top < triggerBottom) {
+        message.classList.add('visible');
+      }
+    };
+    window.addEventListener('scroll', reveal);
+    reveal(); // in case it's already in view
+  </script>
+
+</body>
+</html>
